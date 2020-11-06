@@ -7,6 +7,7 @@ Created on Fri Nov  6 16:14:47 2020
 import tweepy
 print('yo')
 
+trump_quotes = ['Stop counting the votes!', 'Vote with smileyCoin!','4 more years!', 'Huuuuge', 'make smileyCoin great again', 'the smileyCoin stocks are doing great']
 CONSUMER_KEY =''
 CONSUMER_SECRET = ''
 ACCESS_KEY =''
