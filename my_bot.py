@@ -6,13 +6,15 @@ Created on Fri Nov  6 16:14:47 2020
 """
 import tweepy
 import time
-print('yo')
+import random
 
-trump_quotes = ['Stop counting the votes!', 'Vote with smileyCoin!','4 more years!', 'Huuuuge', 'make smileyCoin great again', 'the smileyCoin stocks are doing great']
+
+trump_quotes = ['Stop counting the votes!', 'Vote with smileyCoin!','4 more years!', 'Huuuuge!', 'make smileyCoin great again!', 'the smileyCoin stocks are doing great!']
 CONSUMER_KEY =''
 CONSUMER_SECRET = ''
 ACCESS_KEY =''
 ACCESS_SECRET=''
+print(help(reversed))
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
@@ -22,7 +24,7 @@ mentions=api.mentions_timeline()
 
 for mention in mentions:
     print(str(mention.id)+mention.text)
-    ##prentar út alla strengi sem notandi tweetar og taggat bottinn
+    ##prentar út alla strengi sem notandi tweetar og taggar bottann
     
 FILE_NAME = 'last_seen_id.txt'
 
@@ -49,12 +51,13 @@ def reply_to_tweets():
         print(str(mention.id)+'-'+mention.full_text)
         last_seen_id = mention.id
         store_last_seen_id(last_seen_id, FILE_NAME)
-        if '#strengur' in mention.full_text.lower():
+        if '#trump2020' in mention.full_text.lower():
             ##finnur strengi sem passar við hashtaggið og prentar út ef hann finnur rétta 
             print('found #string')
-            print('repsonding')  
-            api.update_status('@' + '#.etta er sem við commentum á póstinn sem við erum taggaðir í'.mention.id)
-        
+            print('repsonding')
+            api.update_status('@' + random.choice(trump_quotes))
+            
+
 
 ##Test
 while True:
