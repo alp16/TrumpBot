@@ -6,13 +6,15 @@ Created on Fri Nov  6 16:14:47 2020
 """
 import tweepy
 import time
-print('yo')
+import random
 
-trump_quotes = ['Stop counting the votes!', 'Vote with smileyCoin!','4 more years!', 'Huuuuge', 'make smileyCoin great again', 'the smileyCoin stocks are doing great']
+
+trump_quotes = ['Stop counting the votes!', 'Vote with smileyCoin!','4 more years!', 'Huuuuge!', 'make smileyCoin great again!', 'the smileyCoin stocks are doing great!']
 CONSUMER_KEY =''
 CONSUMER_SECRET = ''
 ACCESS_KEY =''
 ACCESS_SECRET=''
+print(random.choice(trump_quotes))
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
@@ -53,8 +55,9 @@ def reply_to_tweets():
             ##finnur strengi sem passar við hashtaggið og prentar út ef hann finnur rétta 
             print('found #string')
             print('repsonding')  
-            api.update_status('@' + '#.etta er sem við commentum á póstinn sem við erum taggaðir í'.mention.id)
-        
+            ##api.update_status('@' + '#.etta er sem við commentum á póstinn sem við erum taggaðir í'.mention.id)
+            api.update_status('@' + random.choice(trump_quotes))
+            
 
 ##Test
 while True:
