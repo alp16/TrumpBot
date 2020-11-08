@@ -9,6 +9,11 @@ import time
 import random
 
 
+##TODO
+##Followa þann sem taggar okkur í tweeti, annars getum við ekki commentað á tweetið.
+##Hugsanlega einhver önnur virkni?
+
+
 trump_quotes = ['Stop counting the votes!', 'Vote with smileyCoin!','4 more years!', 'Huuuuge!', 'make smileyCoin great again!', 'the smileyCoin stocks are doing great!']
 biden_diss = ['sleepy joe!', 'I did more then sleepy joe in 4 years than him in 40 years!','worst candidate ever!']
 CONSUMER_KEY ='CXl3P9YWN3gMx7RpGgEzwb1fr'
@@ -51,13 +56,16 @@ def reply_to_tweets():
         store_last_seen_id(last_seen_id, FILE_NAME)
         if '#helloworld' in mention.full_text.lower():
             ##finnur strengi sem passar við hashtaggið og prentar út ef hann finnur rétta 
-            print('found #string')
+            print('found #helloworld')
             print('repsonding')
             api.update_status('@' + 'hello world!')
-            
+        if '#smileycoin' in mention.full_text.lower():
+            print('found #smileycoin')
+            print('responding')
+            ##fylla út if setning til commenta það sem við viljum
 
 
 ##Test
 while True:
     reply_to_tweets()
-    time.sleep(2)
+    time.sleep(30)
