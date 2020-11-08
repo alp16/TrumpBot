@@ -10,21 +10,19 @@ import random
 
 
 trump_quotes = ['Stop counting the votes!', 'Vote with smileyCoin!','4 more years!', 'Huuuuge!', 'make smileyCoin great again!', 'the smileyCoin stocks are doing great!']
-CONSUMER_KEY =''
-CONSUMER_SECRET = ''
-ACCESS_KEY =''
-ACCESS_SECRET=''
-print(help(reversed))
+biden_diss = ['sleepy joe!', 'I did more then sleepy joe in 4 years than him in 40 years!','worst candidate ever!']
+CONSUMER_KEY ='CXl3P9YWN3gMx7RpGgEzwb1fr'
+CONSUMER_SECRET = 'D37KlNwlRiR7PPzLaePEtQFiCCxAkNYSdJCdvAXL6htuctO7G9'
+ACCESS_KEY ='1325247044601192448-7BsmRdXKeGI9GXnyjmpa1aE3gst5Wd'
+ACCESS_SECRET='gUQQVH4b8hlUjzNyFHmxBIqtpYvi6jXdHJSX2FekCQd04'
 
+print(random.choice(trump_quotes))
+print(random.choice(biden_diss))
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
 
-mentions=api.mentions_timeline()
 
-for mention in mentions:
-    print(str(mention.id)+mention.text)
-    ##prentar út alla strengi sem notandi tweetar og taggar bottann
     
 FILE_NAME = 'last_seen_id.txt'
 
@@ -51,11 +49,11 @@ def reply_to_tweets():
         print(str(mention.id)+'-'+mention.full_text)
         last_seen_id = mention.id
         store_last_seen_id(last_seen_id, FILE_NAME)
-        if '#trump2020' in mention.full_text.lower():
+        if '#helloworld' in mention.full_text.lower():
             ##finnur strengi sem passar við hashtaggið og prentar út ef hann finnur rétta 
             print('found #string')
             print('repsonding')
-            api.update_status('@' + random.choice(trump_quotes))
+            api.update_status('@' + 'hello world!')
             
 
 
