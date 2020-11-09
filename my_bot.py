@@ -63,9 +63,17 @@ def reply_to_tweets():
             print('found #smileycoin')
             print('responding')
             ##fylla út if setning til commenta það sem við viljum
+            
+def follow_latest():
+    followers = api.followers()
+    print(len(followers))
+    for follower in followers:
+        print(follower.screen_name)
+        api.create_friendship(follower.screen_name)
 
 
 ##Test
 while True:
     reply_to_tweets()
+    follow_latest()
     time.sleep(30)
