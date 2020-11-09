@@ -54,11 +54,13 @@ def reply_to_tweets():
         print(str(mention.id)+'-'+mention.full_text)
         last_seen_id = mention.id
         store_last_seen_id(last_seen_id, FILE_NAME)
+        if '' in mention.full_text.lower():
+            api.create_friendship(mention.user.screen_name)
         if '#helloworld' in mention.full_text.lower():
             ##finnur strengi sem passar við hashtaggið og prentar út ef hann finnur rétta 
             print('found #helloworld')
             print('repsonding')
-            api.update_status('@' + 'hello world!')
+            api.update_status('@' + mention.user.screen_name +' hello world!',mention.id)
         if '#smileycoin' in mention.full_text.lower():
             print('found #smileycoin')
             print('responding')
