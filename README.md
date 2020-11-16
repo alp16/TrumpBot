@@ -21,6 +21,8 @@ last_seen_id skráin er með id á síðasta tweeti sem við fundum og reply-um 
 
 payday skráinn heldur utan um daginn sem var síðast borgað
 
+addr skráinn heldur utan um addressur hjá notendum. Ekki tilbúin
+
 # //TODO
 gera aðferðina payday sem borgar notendum.
 
