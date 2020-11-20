@@ -31,6 +31,9 @@ api = tweepy.API(auth)
     
 FILE_NAME = 'last_seen_id.txt'
 
+
+
+
 def retrive_last_seen_id(file_name):
     f_read = open(file_name,'r')
     last_seen_id = int(f_read.read().strip())
@@ -45,12 +48,16 @@ def store_last_seen_id(last_seen_id, file_name):
     f_write.close()
     return
 
+
+
 def reply_to_tweets():
     last_seen_id = retrive_last_seen_id(FILE_NAME)
     mentions = api.mentions_timeline(
                         last_seen_id,
                         tweet_mode = 'extended')
+    tweetsArr = []
     for mention in reversed(mentions):
+        tweetsArr.append([x for x in mention.full_text.split()])
         print(str(mention.id)+'-'+mention.full_text)
         last_seen_id = mention.id
         store_last_seen_id(last_seen_id, FILE_NAME)
@@ -66,18 +73,23 @@ def reply_to_tweets():
             print('responding')
             ##fylla út if setning til commenta það sem við viljum
         
+
         if '#payme' in mention.full_text.lower():
             print('found #payme')
             print('responding')
+            print(tweetsArr[0][2], file=open("addr.txt", "a"))
+            api.update_status('@' + mention.user.screen_name +' Við borgum þér 1 smileycoin á dag!',mention.id)
+            
             ## skrá niður address sem kemur eftir #payme
             ## verður að vera X margir stafir
             ## dæmi um addressu: 'BTFvCNrmEervaLE6QASUGpKeiejZEiR11Z'
+
             
 def follow_latest():
     followers = api.followers()
     print(len(followers))
     for follower in followers:
-        print(follower.screen_name)
+        #print(follower.screen_name)
         api.create_friendship(follower.screen_name)
 
 

@@ -18,11 +18,24 @@ api = tweepy.API(auth)
 
 mentions=api.mentions_timeline()
 
+attArr = []
+
+
+
+for mention in mentions:
+    attArr.append([x for x in mention.text.split()])
+    
+
 
     
-    
-    
 FILE_NAME = 'last_seen_id.txt'
+
+
+
+
+
+
+
 
 def retrive_last_seen_id(file_name):
     f_read = open(file_name,'r')
@@ -50,4 +63,12 @@ for mention in reversed(mentions):
         print('found #string')
         print('repsonding')
         api.update_status('@' + mention.user.screen_name +' hello world!',mention.id)
-            
+    if '#payme' in mention.full_text.lower():
+        print('found string')
+        print('responding')
+        #f_write = open("addr.txt", 'w')
+        #f_write.write(str(attArr[0][2]))
+        #f.write.close()
+        print(attArr[0][2], file=open("addr.txt", "a"))
+
+     
