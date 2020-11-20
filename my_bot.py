@@ -8,7 +8,7 @@ import tweepy
 import time
 import random
 import datetime
-
+import subprocess
 ##TODO
 ##Followa þann sem taggar okkur í tweeti, annars getum við ekki commentað á tweetið.
 ##Hugsanlega einhver önnur virkni?
@@ -112,9 +112,19 @@ def isItPayDay():
     return False
 
 # aðferð sem borgar notendum.
-# //TODO 
+#TODO 
+addressur = []
+
+
 def payDay():
-    	print("payydayyy")
+    print("payydayyy")
+    f = open("addr.txt","r")
+    for x in f:
+        addressur.append(x)
+    for i in addressur:
+        #linux skipun
+        subprocess.call(['smileycoin-cli','sendtoaddress', str(i) ,'1'])
+    
         
       
 
