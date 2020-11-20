@@ -7,7 +7,7 @@ Created on Fri Nov  6 16:14:47 2020
 import tweepy
 import time
 import random
-
+import datetime
 
 ##TODO
 ##Followa þann sem taggar okkur í tweeti, annars getum við ekki commentað á tweetið.
@@ -66,6 +66,15 @@ def reply_to_tweets():
             print('responding')
             ##fylla út if setning til commenta það sem við viljum
         
+<<<<<<< HEAD
+=======
+        if '#payme' in mention.full_text.lower():
+            print('found #payme')
+            print('responding')
+            ## skrá niður address sem kemur eftir #payme
+            ## verður að vera X margir stafir
+            ## dæmi um addressu: 'BTFvCNrmEervaLE6QASUGpKeiejZEiR11Z'
+>>>>>>> c818bfe4531686284289c1e230613faa6fa13fb6
             
 def follow_latest():
     followers = api.followers()
@@ -75,8 +84,35 @@ def follow_latest():
         api.create_friendship(follower.screen_name)
 
 
+#aðferð sem athugar hvort það sé kominn nýr dagur
+#Skilar true ef það er ekki búið að borga notendum í dag
+def isItPayDay():
+    f = open("payday.txt","r")
+    f = f.read()
+    f = int(f)
+    print(f)
+    x = datetime.datetime.now()
+    # tjékkar hvort það hafi verið borgað út í dag
+    # x.month ef þetta verða mánaðarlegar greiðslur
+    if f != x.day:
+        #eyðir öllu úr payday skránni
+        open('payday.txt', 'w').close()
+        # skrifar daginn í dag í payday
+        print(x.day, file=open("payday.txt", "a"))
+        return True
+    return False
+
+# aðferð sem borgar notendum.
+# //TODO 
+def payDay():
+    	print("payydayyy")
+        
+      
+
 ##Test
 while True:
     reply_to_tweets()
     follow_latest()
+    if isItPayDay():
+        payDay()
     time.sleep(30)
