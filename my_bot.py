@@ -65,6 +65,7 @@ def reply_to_tweets():
             print('found #smileycoin')
             print('responding')
             ##fylla út if setning til commenta það sem við viljum
+        
             
 def follow_latest():
     followers = api.followers()
