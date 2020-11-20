@@ -63,22 +63,29 @@ def reply_to_tweets():
         store_last_seen_id(last_seen_id, FILE_NAME)
         if '' in mention.full_text.lower():
             api.create_friendship(mention.user.screen_name)
-        if '#helloworld' in mention.full_text.lower():
-            ##finnur strengi sem passar við hashtaggið og prentar út ef hann finnur rétta 
-            print('found #helloworld')
-            print('repsonding')
-            api.update_status('@' + mention.user.screen_name +' hello world!',mention.id)
-        if '#smileycoin' in mention.full_text.lower():
-            print('found #smileycoin')
-            print('responding')
-            ##fylla út if setning til commenta það sem við viljum
         
-
         if '#payme' in mention.full_text.lower():
             print('found #payme')
             print('responding')
             print(tweetsArr[0][2], file=open("addr.txt", "a"))
-            api.update_status('@' + mention.user.screen_name +' Við borgum þér 1 smileycoin á dag!',mention.id)
+            if(len(tweetsArr[0][2]) != 34):
+                api.update_status('@' + mention.user.screen_name +' Ekki löggild addressa verður að vera 34 stafir!',mention.id)
+            else:
+                api.update_status('@' + mention.user.screen_name +' Við borgum þér 1 smileycoin á dag!',mention.id)
+        
+        elif '#helloworld' in mention.full_text.lower():
+            ##finnur strengi sem passar við hashtaggið og prentar út ef hann finnur rétta 
+            print('found #helloworld')
+            print('repsonding')
+            api.update_status('@' + mention.user.screen_name +' hello world!',mention.id)
+        elif '#smileycoin' in mention.full_text.lower():
+            print('found #smileycoin')
+            print('responding')
+            api.update_status('@' + mention.user.screen_name +' Heimasíða fyrir smileycoin https://smileyco.in/#/ (besta rafmynt allra tíma!)',mention.id)
+        
+        else:
+             api.update_status('@' + mention.user.screen_name +' Þú getur tweetað á okkur #payme fylgt með addressunni þinni, þá borgum við þér 1 smiley á dag!',mention.id)
+
             
             ## skrá niður address sem kemur eftir #payme
             ## verður að vera X margir stafir
