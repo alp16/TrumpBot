@@ -94,11 +94,14 @@ def reply_to_tweets():
             
 def follow_latest():
     followers = api.followers()
+    following = api.friends()
     print(len(followers))
     for follower in followers:
         #print(follower.screen_name)
-        api.create_friendship(follower.screen_name)
-
+        if follower in following:
+            continue
+        else:    
+            api.create_friendship(follower.screen_name)
 
 #aðferð sem athugar hvort það sé kominn nýr dagur
 #Skilar true ef það er ekki búið að borga notendum í dag
