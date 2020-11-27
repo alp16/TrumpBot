@@ -1,4 +1,4 @@
-# TrumpBot
+# SmileyBot
 # ATH þarf linux veski til að keyra
 til að importa tweepy pakkann á console
 
