@@ -17,7 +17,7 @@ fyrir linux
 pip3 install tweepy
 
 
-# Til að keyra
+# Athugasemdir um kóðann
 
 last_seen_id skráin er með id á síðasta tweeti sem við fundum og reply-um á þann sem tweetaði
 
