@@ -9,20 +9,14 @@ import time
 import random
 import datetime
 import subprocess
-##TODO
-##Followa þann sem taggar okkur í tweeti, annars getum við ekki commentað á tweetið.
-##Hugsanlega einhver önnur virkni?
 
 
-trump_quotes = ['Stop counting the votes!', 'Vote with smileyCoin!','4 more years!', 'Huuuuge!', 'make smileyCoin great again!', 'the smileyCoin stocks are doing great!']
-biden_diss = ['sleepy joe!', 'I did more then sleepy joe in 4 years than him in 40 years!','worst candidate ever!']
 CONSUMER_KEY ='CXl3P9YWN3gMx7RpGgEzwb1fr'
 CONSUMER_SECRET = 'D37KlNwlRiR7PPzLaePEtQFiCCxAkNYSdJCdvAXL6htuctO7G9'
 ACCESS_KEY ='1325247044601192448-7BsmRdXKeGI9GXnyjmpa1aE3gst5Wd'
 ACCESS_SECRET='gUQQVH4b8hlUjzNyFHmxBIqtpYvi6jXdHJSX2FekCQd04'
 
-print(random.choice(trump_quotes))
-print(random.choice(biden_diss))
+
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
@@ -95,7 +89,7 @@ def reply_to_tweets():
 def follow_latest():
     followers = api.followers()
     following = api.friends()
-    print(len(followers))
+    
     for follower in followers:
         #print(follower.screen_name)
         if follower in following:
@@ -109,7 +103,7 @@ def isItPayDay():
     f = open("payday.txt","r")
     f = f.read()
     f = int(f)
-    print(f)
+    
     x = datetime.datetime.now()
     # tjékkar hvort það hafi verið borgað út í dag
     # x.month ef þetta verða mánaðarlegar greiðslur
